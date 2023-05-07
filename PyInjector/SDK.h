@@ -6,7 +6,7 @@
 class SDK
 {
 public:
-	void InitCPython();
+	static bool InitCPython();
 };
 
 typedef

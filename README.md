@@ -1,17 +1,24 @@
 # PyInjector
-PyInjector - Inject Python code into python process.
+PyInjector - Inject python-code into any python process or spawn interactive python-shell inside the target process.
 
 ## How to use it ?
-Simply write the code you want to inject into a file called code.py.   
-The file as to be in the same folder of the software you want to inject it.   
-You can also write it directly in the dll and recompile it.
 
-## Why injecting python code into python script ?
+### Injecting own code
+1. Write the code you want to inject into a file called code.py and place it in the same folder of the software you want to inject it (in the current folder of this software).   
+2. Inject the PyInjector_x64.dll / PyInjector_x86.dll into the target process using Process Hacker or any other DLL injection tool.
+
+You can also write the code directly in the DLL and recompile it or modify python code inside PyInjector_x??.dll in your favorite binary editor.   
+
+#### Why injecting python code into python script ?
 This project is made for reverse-engineer and malware analyst, the main aspect of this project is to reverse-engineer any python script/executable easily.   
-I put some usefull script in the src/ folder that can be used to reverse-engineer any script (even with pyarmor).
+I put some usefull script in the py-code-examples/ folder that can be used to reverse-engineer any script (even with pyarmor).
+
+### Spawning python-shell
+Spawning interactive python shell in the any python process is easy - just inject PyInjector_x64_shell.dll / PyInjector_x86_shell.dll DLL in the target process. It should be enough to see interactive console window with python shell.   
+You can spawn interactive python shell even in GUI applications.
 
 ## Compatibilities
-PyInjector is compatible with x32 and x64, python 3.7,3.8,3.9.
+PyInjector is compatible with x32 and x64, python 3.7, 3.8, 3.9, 3.10, 3.11.
 
-## Exemple
+## Example
 In this [video](https://youtu.be/NkFs7A0q4DM) im unpacking a function in a pyarmor protected script with PyInjector.
