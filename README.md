@@ -5,7 +5,7 @@ PyInjector - Inject python-code into any python process or spawn interactive pyt
 
 ### Injecting own code
 1. Write the code you want to inject into a file called code.py and place it in the same folder of the software you want to inject it (in the current folder of this software).   
-2. Inject the PyInjector_x64.dll / PyInjector_x86.dll into the target process using Process Hacker or any other DLL injection tool.
+2. Inject the PyInjector_x64.dll / PyInjector_x86.dll into the target process using [Process Hacker](https://processhacker.sourceforge.io/) or any other [DLL injection tool](https://github.com/nefarius/Injector).
 
 You can also write the code directly in the DLL and recompile it or modify python code inside PyInjector_x??.dll in your favorite binary editor.   
 
@@ -18,8 +18,9 @@ Spawning interactive python shell in the any python process is easy - just injec
 You can spawn interactive python shell even in GUI applications.
 
 ## Compatibilities
-PyInjector is compatible with x86/x64 python 3.7, 3.8, 3.9, 3.10, 3.11.
-OS: Windows XP and later.
+Requirements:
+- OS: Windows XP or later.
+- Target process must use Python x86/x64 3.7, 3.8, 3.9, 3.10, 3.11.
 
 ## Example
 In this [video](https://youtu.be/NkFs7A0q4DM) [@call-042PE](https://github.com/call-042PE) is unpacking a function in a pyarmor protected script with PyInjector.
