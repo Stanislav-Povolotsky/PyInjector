@@ -145,6 +145,7 @@ DWORD WINAPI MainThread(HMODULE hModule)
 #endif
         }
         run_python_code();
+        break;
     } while (true);
     FreeLibraryAndExitThread(hModule, 0);
 }
