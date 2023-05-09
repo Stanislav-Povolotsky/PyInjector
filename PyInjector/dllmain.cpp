@@ -66,9 +66,9 @@ void run_python_code()
     // We need to access the interactive shell, so stdin, stdout, stderr must be assigned to the console
     PyRun_SimpleString(
         "import sys, io"                                                       "\n"
-        "if not sys.stdin.isatty():  sys.stdin  = io.open(\"CONIN$\",  \"r\")" "\n"
-        "if not sys.stdout.isatty(): sys.stdout = io.open(\"CONOUT$\", \"w\")" "\n"
-        "if not sys.stderr.isatty(): sys.stderr = io.open(\"CONOUT$\", \"w\")" "\n");
+        "sys.stdin  = io.open(\"CONIN$\",  \"r\")" "\n"
+        "sys.stdout = io.open(\"CONOUT$\", \"w\")" "\n"
+        "sys.stderr = io.open(\"CONOUT$\", \"w\")" "\n");
 #endif // MODE_SPAWN_PYSHELL
 
     PyRun_SimpleString(code);
