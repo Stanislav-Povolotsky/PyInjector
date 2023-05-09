@@ -4,7 +4,7 @@ PyInjector - Inject python-code into any python process or spawn interactive pyt
 ## How to use it ?
 
 ### Injecting own code
-1. Write the code you want to inject into a file called code.py and place it in the same folder of the software you want to inject it (in the current folder of this software).   
+1. Write the code you want to inject into a file called _code.py_ and place it in the same folder of the software you want to inject it (in the _current folder_ of this software).   
 2. Inject the PyInjector_x64.dll / PyInjector_x86.dll into the target process using [Process Hacker](https://processhacker.sourceforge.io/) or any other [DLL injection tool](https://github.com/nefarius/Injector).
 
 You can also write the code directly in the DLL and recompile it or modify python code inside PyInjector_x??.dll in your favorite binary editor.   
