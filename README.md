@@ -13,9 +13,15 @@ You can also write the code directly in the DLL and recompile it or modify pytho
 This project is made for reverse-engineer and malware analyst, the main aspect of this project is to reverse-engineer any python script/executable easily.   
 I put some usefull script in the py-code-examples/ folder that can be used to reverse-engineer any script (even with pyarmor).
 
+### Demo: injecting code.py
+![injecting-code py](https://github.com/Stanislav-Povolotsky/PyInjector/assets/19610545/9d2cd5c5-97c9-4b31-bee3-3c346a3c1b43)
+
 ### Spawning python-shell
 Spawning interactive python shell in the any python process is easy - just inject PyInjector_x64_shell.dll / PyInjector_x86_shell.dll DLL in the target process. It should be enough to see interactive console window with python shell.   
 You can spawn interactive python shell even in GUI applications.
+
+### Demo: spawning python-shell
+![spawning-pyshell py](https://github.com/Stanislav-Povolotsky/PyInjector/assets/19610545/3dd58cd9-811d-40e8-a84a-752c30fd51fa)
 
 ## Compatibilities
 Requirements:
