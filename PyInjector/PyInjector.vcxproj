@@ -140,6 +140,9 @@
     <IntDir>$(BaseOutputDirectory)\int\$(Platform)_$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_x64_shell</TargetName>
   </PropertyGroup>
+  <Target Name="LogBuildParameters" BeforeTargets="ClCompile">
+    <Message Text="Building $(TargetName); Configuration: $(Configuration) for $(Platform); PlatformToolset: $(PlatformToolset); Visual Studio: $(VisualStudioVersion)" Importance="high" />
+  </Target>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
