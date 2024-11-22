@@ -38,6 +38,12 @@
     <UsePlatformToolset Condition="'$(VisualStudioVersion)' == '17.0'">v143</UsePlatformToolset>
     <UsePlatformToolset Condition="'$(UsePlatformToolset)' == ''">$(VCPlatformToolsetVersion)</UsePlatformToolset>
     <BaseOutputDirectory>..\build</BaseOutputDirectory>
+    <BuildVersionMajor>$(BUILD_VERSION_MAJOR)</BuildVersionMajor>
+    <BuildVersionMinor>$(BUILD_VERSION_MINOR)</BuildVersionMinor>
+    <BuildVersionBuild>$(BUILD_VERSION_BUILD)</BuildVersionBuild>
+    <BuildVersionMajor Condition="'$(BuildVersionMajor)' == ''">0</BuildVersionMajor>
+    <BuildVersionMinor Condition="'$(BuildVersionMinor)' == ''">0</BuildVersionMinor>
+    <BuildVersionBuild Condition="'$(BuildVersionBuild)' == ''">0</BuildVersionBuild>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -141,8 +147,26 @@
     <TargetName>$(ProjectName)_x64_shell</TargetName>
   </PropertyGroup>
   <Target Name="LogBuildParameters" BeforeTargets="ClCompile">
-    <Message Text="Building $(TargetName); Configuration: $(Configuration) for $(Platform); PlatformToolset: $(PlatformToolset); Visual Studio: $(VisualStudioVersion)" Importance="high" />
+    <Message Text="Building $(TargetName) v$(BuildVersionMajor).$(BuildVersionMinor).$(BuildVersionBuild); Configuration: $(Configuration) for $(Platform); PlatformToolset: $(PlatformToolset); Visual Studio: $(VisualStudioVersion)" Importance="high" />
   </Target>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PreprocessorDefinitions>
+        BUILD_VERSION_MAJOR=$(BuildVersionMajor);
+        BUILD_VERSION_MINOR=$(BuildVersionMinor);
+        BUILD_VERSION_BUILD=$(BuildVersionBuild);
+        %(PreprocessorDefinitions)
+      </PreprocessorDefinitions>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>
+        BUILD_VERSION_MAJOR=$(BuildVersionMajor);
+        BUILD_VERSION_MINOR=$(BuildVersionMinor);
+        BUILD_VERSION_BUILD=$(BuildVersionBuild);
+        %(PreprocessorDefinitions)
+      </PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -269,6 +293,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SDK.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resources.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
