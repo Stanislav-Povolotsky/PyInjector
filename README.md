@@ -7,23 +7,23 @@ Based on [PyInjector](https://github.com/call-042PE/PyInjector) by [@call-042PE]
 1. Find out what platform uses the target process (where you will inject your python code or in which context you want to spawn shell).   
    You can find out it by checking "Platform" column in the task manager.  
    Then select the correct version of the PyInjector:
-   - on *64-bit* platform
-     - PyInjector_*x64*.dll to inject you own python code
-     - PyInjector_*x64*_shell.dll to spawn shell in the context of the target process
-   - on *32-bit* platform
-     - PyInjector_*x86*.dll to inject you own python code
-     - PyInjector_*x86*_shell.dll to spawn shell in the context of the target process
-   - on *ARM64* platform
-     - PyInjector_*arm*.dll to inject you own python code
-     - PyInjector_*arm*_shell.dll to spawn shell in the context of the target process
+   - on **64-bit** platform
+     - PyInjector_**x64**.dll to inject you own python code
+     - PyInjector_**x64**_shell.dll to spawn shell in the context of the target process
+   - on **32-bit** platform
+     - PyInjector_**x86**.dll to inject you own python code
+     - PyInjector_**x86**_shell.dll to spawn shell in the context of the target process
+   - on **ARM64** platform
+     - PyInjector_**arm**.dll to inject you own python code
+     - PyInjector_**arm**_shell.dll to spawn shell in the context of the target process
 
 2. If you want to inject your own custom python code, write it into a file called _code.py_ and 
    place it in the same folder where PyInjector DLLs are located or in the current folder of the target app.
 
 2. Inject PyInjector DLL into the target process by using:
-   - [Injector](https://github.com/nefarius/Injector) [Download](https://github.com/nefarius/Injector/releases/latest)
-   - [System Informer](https://github.com/winsiderss/systeminformer) [Download](https://systeminformer.sourceforge.io/downloads.php)
-   - [Process Hacker](https://processhacker.sourceforge.io/) [Download](https://processhacker.sourceforge.io/downloads.php)
+   - [Injector](https://github.com/nefarius/Injector) ([Download](https://github.com/nefarius/Injector/releases/latest))
+   - [System Informer](https://github.com/winsiderss/systeminformer) ([Download](https://systeminformer.sourceforge.io/downloads.php))
+   - [Process Hacker](https://processhacker.sourceforge.io/) ([Download](https://processhacker.sourceforge.io/downloads.php))
    - or any other DLL injection tool
 
 ## Why would somebody need to inject Python code into a Python script?
