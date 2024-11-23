@@ -37,9 +37,13 @@ You have prepared your own _code.py_ and placed it in the same folder where PyIn
 Perfect! Now just inject (load) PyInjector_x64.dll in the target process and and _code.py_ will be executed.  
 Reminder: if the target process have no console window, do not try to print something on the screen, you will see nothing. Just open the file and write output there.
 
+### Demo: injecting code.py with System Informer
+
+![injecting code.py with Process Hacker](https://github.com/user-attachments/assets/4214b213-5cfc-430a-bf0e-fa6bd2f98cef)
+
 ### Demo: injecting code.py with Process Hacker
 
-![injecting-code py](https://github.com/Stanislav-Povolotsky/PyInjector/assets/19610545/eb1d55af-b2ba-48c8-9405-572be5dadf1a)
+![injecting code.py with Process Hacker](https://github.com/Stanislav-Povolotsky/PyInjector/assets/19610545/eb1d55af-b2ba-48c8-9405-572be5dadf1a)
 
 ## Spawning python-shell
 
