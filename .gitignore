@@ -5,3 +5,7 @@
 /.vs
 /bin
 /release
+/build
+/builder
+/tmp
+/output
