@@ -6,7 +6,7 @@
 class SDK
 {
 public:
-	static bool InitCPython();
+    static bool InitCPython();
 };
 
 typedef
@@ -14,8 +14,8 @@ enum { PyGILState_LOCKED, PyGILState_UNLOCKED }
 PyGILState_STATE;
 
 typedef struct {
-	int cf_flags;  /* bitmask of CO_xxx flags relevant to future */
-	int cf_feature_version;  /* minor Python version (PyCF_ONLY_AST) */
+    int cf_flags;  /* bitmask of CO_xxx flags relevant to future */
+    int cf_feature_version;  /* minor Python version (PyCF_ONLY_AST) */
 } PyCompilerFlags;
 
 #define PyRun_SimpleString(s) PyRun_SimpleStringFlags(s, NULL)

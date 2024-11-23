@@ -1,6 +1,6 @@
 $project = "PyInjector/PyInjector.vcxproj"
 
-$platforms = @("x64", "x86")
+$platforms = @("x64", "x86", "ARM64")
 $configs = @("Release", "Release_SpawnShell")
 $retargetPlatformToolset = "" 
 # Replace with your desired PlatformToolset version
