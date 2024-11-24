@@ -50,9 +50,13 @@ Reminder: if the target process have no console window, do not try to print some
 Spawning interactive python shell in the any python process is easy - just inject PyInjector_x64_shell.dll / PyInjector_x86_shell.dll DLL in the target process. It should be enough to see interactive console window with python shell.   
 You can spawn interactive python shell even in GUI applications.
 
-### Demo: spawning python-shell
+### Demo: spawning python-shell with System Informer
 
-![spawning-pyshell py](https://github.com/Stanislav-Povolotsky/PyInjector/assets/19610545/17c08928-533d-4482-a191-5dbbb5ee951c)
+![spawning python shell with System Informer](https://github.com/user-attachments/assets/9ba47489-7521-4400-b02a-6eaf772ba682)
+
+### Demo: spawning python-shell with Process Hacker
+
+![spawning python shell with Process Hacker](https://github.com/Stanislav-Povolotsky/PyInjector/assets/19610545/17c08928-533d-4482-a191-5dbbb5ee951c)
 
 ## Compatibilities
 Requirements:
