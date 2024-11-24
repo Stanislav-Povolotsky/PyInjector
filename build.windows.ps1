@@ -6,6 +6,11 @@ $retargetPlatformToolset = ""
 # Replace with your desired PlatformToolset version
 # $retargetPlatformToolset = "v143" 
 
+if (Test-Path .git) {
+    $BUILD_SOURCE = git config --get remote.origin.url
+    $env:BUILD_SOURCE = "from " + $BUILD_SOURCE
+}
+
 # Setting PlatformToolset to required value
 if (-not ([string]::IsNullOrEmpty($retargetPlatformToolset))) {
     $content = Get-Content -Path $project

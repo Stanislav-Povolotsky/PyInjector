@@ -61,3 +61,11 @@ Requirements:
 
 ## Example
 In this [video](https://youtu.be/NkFs7A0q4DM) [@call-042PE](https://github.com/call-042PE) is unpacking a function in a pyarmor protected script with PyInjector.
+
+## How to build
+
+- Open solution *PyInjector.sln* in Visual Studio 2015 / 2017 / 2019 / 2022, 
+  select required configuration and platform (for example "Release" "x64") and run
+  "Build / Build Solution".
+- Or just run "Developer Command Prompt" or "Native Tools Command Prompt for VS 20xx" and 
+  run **build.windows.ps1** from the project directory.

@@ -1,8 +1,5 @@
 #include <windows.h>
 
-#define PROJECT_NAME "PyInjector"
-#define PROJECT_URL  "https://github.com/Stanislav-Povolotsky/PyInjector"
-
 #ifndef BUILD_VERSION_MAJOR
 #error No version specified
 #define BUILD_VERSION_MAJOR    0
@@ -17,6 +14,24 @@
 #define BUILD_VERSION_MINOR_STR    xstr(BUILD_VERSION_MINOR)
 #define BUILD_VERSION_BUILD_STR    xstr(BUILD_VERSION_BUILD)
 
+#ifdef BUILD_SOURCE
+#define BUILD_SOURCE_STR           " " xstr(BUILD_SOURCE)
+#else
+#define BUILD_SOURCE_STR           ""
+#endif
+
+#ifdef PROJECT_NAME
+#define PROJECT_NAME_STR           xstr(PROJECT_NAME)
+#else
+#define PROJECT_NAME_STR           "Unknown"
+#endif
+
+#ifdef TARGET_NAME
+#define TARGET_NAME_STR            xstr(TARGET_NAME)
+#else
+#define TARGET_NAME_STR            PROJECT_NAME_STR
+#endif
+        
 LANGUAGE LANG_ENGLISH, SUBLANG_DEFAULT
 
 VS_VERSION_INFO VERSIONINFO
@@ -29,10 +44,10 @@ BEGIN
         BEGIN
             VALUE "FileVersion",      BUILD_VERSION_MAJOR_STR "." BUILD_VERSION_MINOR_STR "." BUILD_VERSION_BUILD_STR "." "0"
             VALUE "ProductVersion",   BUILD_VERSION_MAJOR_STR "." BUILD_VERSION_MINOR_STR "." BUILD_VERSION_BUILD_STR "." "0"
-            VALUE "InternalName",     PROJECT_NAME
-            VALUE "OriginalFilename", PROJECT_NAME ".dll"
-            VALUE "ProductName",      PROJECT_NAME
-            VALUE "FileDescription",  PROJECT_NAME " from " PROJECT_URL
+            VALUE "InternalName",     PROJECT_NAME_STR
+            VALUE "OriginalFilename", TARGET_NAME_STR
+            VALUE "ProductName",      PROJECT_NAME_STR
+            VALUE "FileDescription",  PROJECT_NAME_STR BUILD_SOURCE_STR
         END
     END
     BLOCK "VarFileInfo"
