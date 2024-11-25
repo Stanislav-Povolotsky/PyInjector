@@ -26,6 +26,12 @@ Based on [PyInjector](https://github.com/call-042PE/PyInjector) by [@call-042PE]
    - [Process Hacker](https://processhacker.sourceforge.io/) ([Download](https://processhacker.sourceforge.io/downloads.php))
    - or any other DLL injection tool
 
+## Compatibilities
+Requirements:
+- Target process must use Python3 (any version)
+- OS: Windows 7 or later  
+  (for Windows XP support: you still can compile it with Visual Studio 2015 or use precompiled binaries from [PyInjector 1.1](https://github.com/Stanislav-Povolotsky/PyInjector/releases/tag/v1.1))
+ 
 ## Why would somebody need to inject Python code into a Python script?
 
 This project is made for reverse-engineer and malware analyst, the main aspect of this project is to reverse-engineer any python script/executable easily.   
@@ -58,18 +64,15 @@ You can spawn interactive python shell even in GUI applications.
 
 ![spawning python shell with Process Hacker](https://github.com/Stanislav-Povolotsky/PyInjector/assets/19610545/17c08928-533d-4482-a191-5dbbb5ee951c)
 
-## Compatibilities
-Requirements:
-- OS: Windows 7 or later.
-- Target process must use Python3 (any version)
+## Examples
 
-## Example
-In this [video](https://youtu.be/NkFs7A0q4DM) [@call-042PE](https://github.com/call-042PE) is unpacking a function in a pyarmor protected script with PyInjector.
+- In this [video](https://youtu.be/NkFs7A0q4DM) [@call-042PE](https://github.com/call-042PE) is unpacking a function in a pyarmor protected script with PyInjector.
+- Solving [Reverse Engineering CTF tasks using PyInjector](https://blog.ryukk.dev/ctfs/write-up/2024/sas-ctf-quals/reverse-engineering#f-and-c-function) (writeup by [@kos0ng](https://github.com/kos0ng))
 
 ## How to build
 
 - Open solution *PyInjector.sln* in Visual Studio 2015 / 2017 / 2019 / 2022, 
   select required configuration and platform (for example "Release" "x64") and run
   "Build / Build Solution".
-- Or just run "Developer Command Prompt" or "Native Tools Command Prompt for VS 20xx" and 
-  run **build.windows.ps1** from the project directory.
+- Or just open "Developer Command Prompt" or "Native Tools Command Prompt for VS 20xx" and 
+  run [build.windows.ps1](https://github.com/Stanislav-Povolotsky/PyInjector/blob/main/build.windows.ps1) from the project directory.
