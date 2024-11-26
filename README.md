@@ -76,6 +76,7 @@ You can spawn interactive python shell even in GUI applications.
 
 - In this [video](https://youtu.be/NkFs7A0q4DM) [@call-042PE](https://github.com/call-042PE) is unpacking a function in a pyarmor protected script with PyInjector.
 - Solving [Reverse Engineering CTF tasks using PyInjector](https://blog.ryukk.dev/ctfs/write-up/2024/sas-ctf-quals/reverse-engineering#f-and-c-function) (writeup by [@kos0ng](https://github.com/kos0ng))
+- Article: [How to dump packed Python code(https://equinox-shame.github.io/2023/08/31/Python%20%E6%89%93%E5%8C%85%E5%90%8E%E7%9A%84Dump/) (by [Ziyue / Equinox-shame](https://github.com/equinox-shame))
 
 ## How to build
 
