@@ -411,7 +411,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="PyInjector.cpp" />
     <ClCompile Include="SDK.cpp" />
   </ItemGroup>
   <ItemGroup>

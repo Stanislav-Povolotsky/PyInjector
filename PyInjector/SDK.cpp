@@ -5,11 +5,13 @@
 #include <psapi.h>
 #pragma comment(lib, "psapi.lib")
 
-_Py_SetProgramName Py_SetProgramName;
-_PyEval_InitThreads PyEval_InitThreads;
-_PyGILState_Ensure PyGILState_Ensure;
-_PyGILState_Release PyGILState_Release;
-_PyRun_SimpleStringFlags PyRun_SimpleStringFlags;
+_Py_GetVersion Py_GetVersion = nullptr;
+_Py_SetProgramName Py_SetProgramName = nullptr;
+_PyEval_InitThreads PyEval_InitThreads = nullptr;
+_PyEval_ThreadsInitialized PyEval_ThreadsInitialized = nullptr;
+_PyGILState_Ensure PyGILState_Ensure = nullptr;
+_PyGILState_Release PyGILState_Release = nullptr;
+_PyRun_SimpleStringFlags PyRun_SimpleStringFlags = nullptr;
 
 namespace 
 {
@@ -44,8 +46,10 @@ bool SDK::InitCPython()
     bool loaded = false;
     auto fnTryToLoad = [&loaded](HMODULE hPython, const wchar_t* sModFilename, size_t sModFilenameLen) -> bool {
         loaded = 
+            NULL != (Py_GetVersion = (_Py_GetVersion)(GetProcAddress(hPython, "Py_GetVersion"))) &&
             NULL != (Py_SetProgramName = (_Py_SetProgramName)(GetProcAddress(hPython, "Py_SetProgramName"))) &&
             NULL != (PyEval_InitThreads = (_PyEval_InitThreads)(GetProcAddress(hPython, "PyEval_InitThreads"))) &&
+            NULL != (PyEval_ThreadsInitialized = (_PyEval_ThreadsInitialized)(GetProcAddress(hPython, "PyEval_ThreadsInitialized"))) &&
             NULL != (PyGILState_Ensure = (_PyGILState_Ensure)(GetProcAddress(hPython, "PyGILState_Ensure"))) &&
             NULL != (PyGILState_Release = (_PyGILState_Release)(GetProcAddress(hPython, "PyGILState_Release"))) &&
             NULL != (PyRun_SimpleStringFlags = (_PyRun_SimpleStringFlags)(GetProcAddress(hPython, "PyRun_SimpleStringFlags")));

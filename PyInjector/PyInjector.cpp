@@ -106,21 +106,30 @@ public:
 #define code g_code_loader.get()
 #elif defined(MODE_SPAWN_PYSHELL)
 static const char code[] = "\n\n\n"
-    "import traceback                                 " "\r\n"
-    "import sys                                       " "\r\n"
-    "                                                 " "\r\n"
-    "while(True):                                     " "\r\n"
-    "  s = input('pyshell >>> ')                      " "\r\n"
-    "  cs = s                                         " "\r\n"
-    "  while(cs.endswith(':') or cs.startswith(' ')): " "\r\n"
-    "    cs = input('pyshell ... ')                   " "\r\n"
-    "    s += '\\n' + cs                              " "\r\n"
-    "  if(not s.strip()): continue                    " "\r\n"
-    "  try:                                           " "\r\n"
-    "    code = compile(s,'<string>','single')        " "\r\n"
-    "    eval(code)                                   " "\r\n"
-    "  except:                                        " "\r\n"
-    "    traceback.print_exception(*sys.exc_info())   " "\r\n\n\n";
+    "def _():                                             " "\r\n"
+    "  del globals()['_']                                 " "\r\n"
+    "  sys = __import__('sys')                            " "\r\n"
+    "  shell_input_fn = input if (sys.version_info[0] != 2) else raw_input" "\r\n"
+    "  while(True):                                       " "\r\n"
+    "    try:                                             " "\r\n"
+    "      sys.stdout.write('pyshell >>> ')               " "\r\n"
+    "      s = shell_input_fn()                           " "\r\n"
+    "      cs = s                                         " "\r\n"
+    "      while(cs.endswith(':') or cs.startswith(' ')): " "\r\n"
+    "        sys.stdout.write('pyshell ... ')             " "\r\n"
+    "        cs = shell_input_fn()                        " "\r\n"
+    "        s += '\\n' + cs                              " "\r\n"
+    "      if(not s.strip()): continue                    " "\r\n"
+    "    except:                                          " "\r\n"
+    "      break                                          " "\r\n"
+    "    try:                                             " "\r\n"
+    "      code = compile(s,'<string>','single')          " "\r\n"
+    "      eval(code)                                     " "\r\n"
+    "    except:                                          " "\r\n"
+    "      __import__('traceback').print_exception(*sys.exc_info())" "\r\n"
+    "  sys.stdout.write(\"pyshell terminated\\n\")        " "\r\n"
+    "_()                                                  " "\r\n"
+    "\n\n";
 #else
 #error "Please, define MODE_XXX macro or write python code to inject in the 'code' variable"
 //static const char code[] = "python code text";
@@ -128,25 +137,44 @@ static const char code[] = "\n\n\n"
 
 void run_python_code()
 {
-    PyGILState_STATE s = PyGILState_UNLOCKED;
+    PyGILState_STATE gil_state = PyGILState_UNLOCKED;
     bool locked = false;
     while (true) {
         if (!sdk.InitCPython()) {
             ::MessageBoxW(0, L"Unable to initialize python (python3x.dll was not found)", L"Error", 0);
             break;
         }
+        if (!PyEval_ThreadsInitialized()) {
+            if (*Py_GetVersion() <= '2') {
+                if(::MessageBoxW(NULL,
+                    L"The multithreading mode has not been initialized in the main thread of the Python 2 application.\n"
+                    L"Attempting to execute the code will most likely result in a hang.\n"
+                    L"Should I try?",
+                    L"Confirmation",
+                    MB_ICONQUESTION | MB_YESNO | MB_DEFBUTTON2) != IDYES) 
+                {
+                    break;
+                }
+            }
+            PyEval_InitThreads();
+        }
         Py_SetProgramName(L"PyInjector");
-        PyEval_InitThreads();
 
-        s = PyGILState_Ensure();
+        gil_state = PyGILState_Ensure();
         locked = true;
 #ifdef MODE_SPAWN_PYSHELL
         // We need to access the interactive shell, so stdin, stdout, stderr must be assigned to the console
         PyRun_SimpleString(
-            "import sys, io"                           "\n"
-            "sys.stdin  = io.open(\"CONIN$\",  \"r\")" "\n"
-            "sys.stdout = io.open(\"CONOUT$\", \"w\")" "\n"
-            "sys.stderr = io.open(\"CONOUT$\", \"w\")" "\n");
+            "def _():"                                            "\n"
+            "  del globals()['_']"                                "\n"
+            "  sys = __import__('sys')"                           "\n"
+            "  openfn = lambda f,rw: __import__('io').open(f, rw) if sys.version_info[0] != 2 else open(f, rw)" "\n"
+            "  stdfnames = ('CONIN$', 'CONOUT$', 'CONOUT$') if (__import__('os').name == 'nt') else (('/dev/tty', ) * 3)" "\n"
+            "  sys.stdin = openfn(stdfnames[0], 'r')"             "\n"
+            "  sys.stdout = openfn(stdfnames[1], 'w')"            "\n"
+            "  sys.stderr = openfn(stdfnames[2], 'w')"            "\n"
+            "_()"                                                                                               "\n"
+        );
 #endif // MODE_SPAWN_PYSHELL
 
         if(!code) {
@@ -158,7 +186,7 @@ void run_python_code()
         break;
     }
     if (locked) {
-        PyGILState_Release(s);
+        PyGILState_Release(gil_state);
     }
 }
 
@@ -254,4 +282,3 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     }
     return TRUE;
 }
-

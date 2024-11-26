@@ -28,9 +28,17 @@ Based on [PyInjector](https://github.com/call-042PE/PyInjector) by [@call-042PE]
 
 ## Compatibilities
 Requirements:
-- Target process must use Python3 (any version)
+
+- Target process must use **Python 3** (any version) or **Python 2** (implemented only limited support)
 - OS: Windows 7 or later  
   (for Windows XP support: you still can compile it with Visual Studio 2015 or use precompiled binaries from [PyInjector 1.1](https://github.com/Stanislav-Povolotsky/PyInjector/releases/tag/v1.1))
+  
+Limits:
+
+- Release binaries are compiled for Windows 7+, please use Visual Studio 2015 to build solution with Windows XP support.
+- **Python 2** support limits: 
+  - Only processes, which have **more than a one thread** are supported (because multithreading support should be initialized in the main thread. See [example](https://github.com/Stanislav-Povolotsky/PyInjector/blob/main/tests/test-script.python2.py))
+  - SpawnShell mode: stdout is locked while processing raw_input(), so target output of the target application will be suspended until you press enter.
  
 ## Why would somebody need to inject Python code into a Python script?
 

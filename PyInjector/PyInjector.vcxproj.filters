@@ -7,7 +7,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dllmain.cpp">
+    <ClCompile Include="PyInjector.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="SDK.cpp">
